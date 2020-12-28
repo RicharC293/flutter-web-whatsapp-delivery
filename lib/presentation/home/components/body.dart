@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/data/in-memory-products.dart';
-import 'package:flutter_web_1/domain/models/productos-model.dart';
 import 'package:flutter_web_1/presentation/car/car-page.dart';
-
-final List<ProductsModel> dataProducts = [];
+import 'package:flutter_web_1/presentation/provider/items-provider.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -23,9 +22,7 @@ class Body extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (_) {
-                    return CarPage(
-                      productsAdded: dataProducts,
-                    );
+                    return CarPage();
                   }),
                 );
               },
@@ -75,7 +72,12 @@ class __ListProductsState extends State<_ListProducts> {
                 ),
                 FlatButton(
                   onPressed: () {
-                    dataProducts.add(data);
+                    final productsAdded =
+                        Provider.of<ItemsProvider>(context, listen: false);
+                    productsAdded.addProduct = data;
+                    if (data.addToCart) {
+                      productsAdded.deleteProduct = data.uId;
+                    }
                     setState(() {
                       data.addToCart = !data.addToCart;
                     });

@@ -1,7 +1,7 @@
-import 'package:location/location.dart';
+import 'package:location/location.dart' as lc;
 
 class BuyModel {
-  final LocationData location;
+  final lc.LocationData location;
   final List<String> products;
   final double total;
 

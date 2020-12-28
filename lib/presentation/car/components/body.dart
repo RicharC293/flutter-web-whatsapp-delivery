@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/data/repositories-implementation/interface-repositori-implementation.dart';
 import 'package:flutter_web_1/domain/models/buy-model.dart';
-import 'package:flutter_web_1/domain/models/productos-model.dart';
+import 'package:flutter_web_1/presentation/provider/items-provider.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
-  final List<ProductsModel> productsAdded;
-
-  const Body({this.productsAdded});
   @override
   Widget build(BuildContext context) {
+    final productsAdded = Provider.of<ItemsProvider>(context).productsAdded;
     double total = 0;
     productsAdded.forEach((element) {
       total = element.price + total;

@@ -4,6 +4,7 @@ import 'package:location/location.dart' as lc;
 
 abstract class InterfaceImplementation {
   Future<lc.LocationData> getlocationUser();
+  Future<bool> enableLocation();
   Future<void> sendMessage(BuyModel buy);
   void addProduct(ProductsModel product);
   List<ProductsModel> getProductsAdded();

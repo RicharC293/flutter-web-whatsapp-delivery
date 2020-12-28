@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_1/presentation/home/home-page.dart';
+import 'package:flutter_web_1/presentation/provider/items-provider.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => ItemsProvider()),
+    ], child: MyApp()));
 
 class MyApp extends StatelessWidget {
   @override

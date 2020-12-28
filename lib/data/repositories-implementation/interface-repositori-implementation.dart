@@ -9,28 +9,32 @@ class InterfaceRepositoriImplementation extends InterfaceImplementation {
   @override
   Future<LocationData> getlocationUser() async {
     lc.Location location = new lc.Location();
+    lc.LocationData _locationData;
+    _locationData = await location.getLocation();
+    return _locationData;
+  }
+
+  @override
+  Future<bool> enableLocation() async {
+    lc.Location location = new lc.Location();
     bool _serviceEnabled;
     lc.PermissionStatus _permissionGranted;
-    lc.LocationData _locationData;
-
     _serviceEnabled = await location.serviceEnabled();
     if (!_serviceEnabled) {
       _serviceEnabled = await location.requestService();
       if (!_serviceEnabled) {
-        return null;
+        return false;
       }
     }
-
     _permissionGranted = await location.hasPermission();
+
     if (_permissionGranted == lc.PermissionStatus.denied) {
       _permissionGranted = await location.requestPermission();
       if (_permissionGranted != lc.PermissionStatus.granted) {
-        return null;
+        return false;
       }
     }
-
-    _locationData = await location.getLocation();
-    return _locationData;
+    return true;
   }
 
   @override
