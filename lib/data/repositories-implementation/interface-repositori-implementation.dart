@@ -39,7 +39,10 @@ class InterfaceRepositoriImplementation extends InterfaceImplementation {
 
   @override
   Future<void> sendMessage(BuyModel buy) async {
-    final _numeberTest = '593983736422'; //Número del establecimiento
+    // Example phone
+    // 593 981920390
+    // <Country code> <Phone number>
+    final _numeberTest = '<YOUR-PHONE-NUMBER>';  //Número del establecimiento
     final _latitude = buy.location.latitude;
     final _longitude = buy.location.longitude;
     final _generalUrlGoogleMaps =
